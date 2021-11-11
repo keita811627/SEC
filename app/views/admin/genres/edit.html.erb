@@ -1,1 +1,11 @@
 <h1>管理側　ジャンル編集</h1>
+
+<div>
+  <h1>ジャンル編集</h1>
+  <%= form_with model: @genre, url: admin_genre_path, local:true do |f| %>
+   <h3>ジャンル名</h3>
+   <%= f.text_field :name, :placeholder => "ジャンル名" %>
+   <%= f.submit "変更" %>
+
+  <% end %>
+</div>
