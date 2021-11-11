@@ -11,4 +11,27 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+ root to: 'public/homes#top'
+
+ namespace :admin do
+   
+  resources :genres
+  
+  resources :questions
+  
+  resources :users
+   
+ end
+
+
+ namespace :public do
+   
+   resources :users
+   get 'unsubscribe' => 'users#unsubscribe'
+   patch 'users/withdraw'
+   
+   resources :questions
+   
+ end
+
 end

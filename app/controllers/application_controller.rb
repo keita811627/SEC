@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
     when User
       root_path
     end
- end
+  end
+ 
  protected
  
  

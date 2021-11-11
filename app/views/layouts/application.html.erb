@@ -10,6 +10,37 @@
   </head>
 
   <body>
+    <header>
+      <% if admin_signed_in? %>
+      <nav>
+        <ul>
+          <li><%= link_to "ユーザー", admin_users_path %></li>
+          <li><%= link_to "ジャンル", admin_genres_path %></li>
+          <li><%= link_to "質問ステータス", new_admin_question_path %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        </ul>
+      </nav>
+      <% elsif user_signed_in? %>
+      <nav>
+        <ul>
+          <li><%= link_to "マイページ", public_user_path(user.id) %></li>
+          <li><%= link_to "質問一覧", public_questions_path %></li>
+          <li><%= link_to "ユーザー", public_users_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </nav>
+      <% else %>
+      <nav>
+        <ul>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+        </ul>
+      </nav>
+      <% end %>
+    </header>
+
+
+
     <%= yield %>
   </body>
 </html>
