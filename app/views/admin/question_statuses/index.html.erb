@@ -1,0 +1,26 @@
+<h1>管理者側　質問ステータス一覧画面</h1>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>質問ステータス</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <% @question_statuses.each do |question_status| %>
+    <tbody>
+      <tr>
+        <td><%= question_status.id %></td>
+        <td><%= question_status.status %></td>
+        <td><%= link_to "編集", edit_admin_question_status_path(question_status.id) %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
+
+<div>
+  <%= link_to "新規登録", new_admin_question_status_path %>
+</div>

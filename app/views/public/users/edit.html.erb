@@ -1,1 +1,11 @@
 <h1>ユーザー側　ユーザー情報編集画面</h1>
+
+<div>
+  <h3>ユーザー情報登録</h3>
+  <%= form_with model: @user, url: public_user_path(current_user.id), local:true do |f| %>
+  <%= f.attachment_field :image %>
+  <%= f.text_field :name, :placeholder => "ユーザー名" %>
+  <%= f.text_area :introduction, :placeholder => "ひとこと" %>
+  <%= f.submit "登録" %>
+  <% end %>
+</div>

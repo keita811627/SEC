@@ -1,1 +1,25 @@
 <h1>ユーザー側　ユーザー詳細</h1>
+
+<div>
+  <table>
+    <tr>
+      <td></td>
+      <td><%= attachment_image_tag current_user, :image, size: '70x70' %></td>
+    </tr>
+    <tr>
+      <td>ユーザー名</td>
+      <td><%= current_user.name %></td>
+    </tr>
+    <tr>
+      <td>ひとこと</td>
+      <td><%= current_user.introduction %></td>
+    </tr>
+  </table>
+</div>
+<div>
+  <%= link_to "会員情報編集", edit_public_user_path(current_user.id) %>
+</div>
+
+<div>
+  <%= link_to "質問する", new_public_question_path %>
+</div>

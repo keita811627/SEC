@@ -1,4 +1,4 @@
-class Genre < ApplicationRecord
+class QuestionStatus < ApplicationRecord
 
   has_many :questions, dependent: :destroy
 

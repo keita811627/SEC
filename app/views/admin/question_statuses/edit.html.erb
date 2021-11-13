@@ -1,0 +1,10 @@
+<h1>管理者側　質問ステータス</h1>
+
+<div>
+  <h2>質問ステータス変更</h2>
+ <%= form_with model: @question_status, url: admin_question_status_path(@question_status.id), local:true do |f| %>
+  <h4>質問ステータス</h4>
+  <%= f.text_area :status, :placeholder => "質問ステータスを記入" %>
+  <%= f.submit "変更" %>
+ <% end %>
+</div>
