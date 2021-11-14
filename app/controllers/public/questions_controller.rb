@@ -19,6 +19,17 @@ class Public::QuestionsController < ApplicationController
     redirect_to public_question_path(@question.id)
   end
 
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    @question.user_id = current_user.id
+    @question.update(question_params)
+    redirect_to public_question_path(@question.id)
+  end
+
   def destroy
 
   end

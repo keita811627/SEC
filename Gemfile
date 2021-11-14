@@ -69,3 +69,6 @@ gem "refile-mini_magick"
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
+
+gem 'redcarpet', '~> 2.3.0'
+gem 'coderay'

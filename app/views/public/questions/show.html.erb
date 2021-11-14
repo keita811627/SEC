@@ -8,7 +8,7 @@
     </tr>
     <tr>
       <td>質問内容</td>
-      <td><%= @question.body %></td>
+      <td><%= markdown(@question.body).html_safe %></td>
     </tr>
     <tr>
       <td>技術項目</td>
@@ -19,4 +19,10 @@
       <td><%= @question.question_status.status %></td>
     </tr>
   </table>
+</div>
+
+
+
+<div>
+  <%= link_to "編集", edit_public_question_path(@question.id) %>
 </div>
