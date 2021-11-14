@@ -1,1 +1,22 @@
 <h1>ユーザー　質問詳細画面</h1>
+
+<div>
+  <table>
+    <tr>
+      <td>タイトル</td>
+      <td><%= @question.title %></td>
+    </tr>
+    <tr>
+      <td>質問内容</td>
+      <td><%= @question.body %></td>
+    </tr>
+    <tr>
+      <td>技術項目</td>
+      <td><%= @question.genre.name %></td>
+    </tr>
+    <tr>
+      <td>質問ステータス</td>
+      <td><%= @question.question_status.status %></td>
+    </tr>
+  </table>
+</div>
