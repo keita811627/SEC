@@ -12,10 +12,17 @@
         <th>ステータス</th>
       </tr>
     </thead>
+    <% @users.each do |user| %>
     <tbody>
       <tr>
+        <td><%= attachment_image_tag user, :image, size: '50x50' %></td>
+        <td><%= user.name %></td>
+        <td><%= user.introduction %></td>
+        <td><%= user.email %></td>
+        <td></td>
         <td></td>
       </tr>
     </tbody>
+    <% end %>
   </table>
 </div>

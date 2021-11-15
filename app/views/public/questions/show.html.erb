@@ -1,60 +1,69 @@
-<h1>ユーザー　質問詳細画面</h1>
+<h5>ユーザー　質問詳細画面</h5>
+<div class="container">
+  <div class="row">
+     <div class="col">
+       <h3>質問</h3>
+       <table>
+         <tr>
+           <td>タイトル</td>
+           <td><%= @question.title %></td>
+         </tr>
+         <tr>
+           <td>質問内容</td>
+           <td><%= markdown(@question.body).html_safe %></td>
+         </tr>
+         <tr>
+           <td>技術項目</td>
+           <td><%= @question.genre.name %></td>
+         </tr>
+         <tr>
+          <td>質問ステータス</td>
+          <td><%= @question.question_status.status %></td>
+         </tr>
+       </table>
+       <%= link_to "編集", edit_public_question_path(@question.id) %>
+     </div>
 
-<div>
-  <table>
-    <tr>
-      <td>タイトル</td>
-      <td><%= @question.title %></td>
-    </tr>
-    <tr>
-      <td>質問内容</td>
-      <td><%= markdown(@question.body).html_safe %></td>
-    </tr>
-    <tr>
-      <td>技術項目</td>
-      <td><%= @question.genre.name %></td>
-    </tr>
-    <tr>
-      <td>質問ステータス</td>
-      <td><%= @question.question_status.status %></td>
-    </tr>
-  </table>
+     <div class="col">
+      <h3>回答</h3>
+      <p>回答数：<%= @question.answers.count %></p>
+      <% @question.answers.each do |answer| %>
+      <table>
+        <tr>
+          <td>ユーザー名</td>
+          <td><%= answer.user.name %></td>
+        </tr>
+        <tr>
+         <td>回答内容</td>
+         <td><%= markdown(answer.answer).html_safe %></td>
+        </tr>
+        <tr>
+          <td>回答日時</td>
+          <td><%= answer.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+       </table>
+          <% if answer.favorited_by?(current_user) %>
+          <p>
+           <%= link_to public_question_answer_favorites_path(@question,answer), method: :delete do %>
+           👍<%= answer.favorites.count %>いいね
+           <% end %>
+           </p>
+           <% else %>
+           <p>
+            <%= link_to public_question_answer_favorites_path(@question,answer), method: :post do %>
+            〇<%= answer.favorites.count %>いいね
+            <% end %>
+            </p>
+            <% end %>
+         </table>
+         <% end %>
+         </div>
+
+ 　　　 <div class="col">
+   　　　 <%= form_with(model:[@question, @answer], url: public_question_answers_path(@question.id), local: true) do |f| %>
+    　　　<%= f.text_area :answer, :placeholder => "回答を入力してください" %>
+   　　　　 <%= f.submit "送信する" %>
+   　　　 <% end %>
+  　　 </div>
+　 </div>
 </div>
-
-
-
-<div>
-  <%= link_to "編集", edit_public_question_path(@question.id) %>
-</div>
-
-
-<h1>回答</h1>
-
-<div>
-  <p>回答数：<%= @question.answers.count %></p>
-  <% @question.answers.each do |answer| %>
-  <%= answer.user.name %>
-  <%= answer.created_at.strftime('%Y/%m/%d') %><%= markdown(answer.answer).html_safe %>
-  <% if answer.favorited_by?(current_user) %>
-<p>
-  <%= link_to public_question_answer_favorites_path(@question,answer), method: :delete do %>
-    👍<%= answer.favorites.count %>いいね
-  <% end %>
-</p>
-<% else %>
-<p>
-  <%= link_to public_question_answer_favorites_path(@question,answer), method: :post do %>
-    〇<%= answer.favorites.count %>いいね
-  <% end %>
-</p>
-<% end %>
-  <% end %>
-</div>
-
-<div>
-  <%= form_with(model:[@question, @answer], url: public_question_answers_path(@question.id), local: true) do |f| %>
-  <%= f.text_area :answer, :placeholder => "回答を入力してください" %>
-  <%= f.submit "送信する" %>
-  <% end %>
-</div>
-
