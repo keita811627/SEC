@@ -30,7 +30,11 @@ Rails.application.routes.draw do
    get 'unsubscribe' => 'users#unsubscribe'
    patch 'users/withdraw'
 
-   resources :questions
+   resources :questions do
+       resources :answers do
+           resource :favorites, only: [:create, :destroy]
+      end
+   end
 
  end
 
