@@ -1,25 +1,43 @@
-<h1>ユーザー側　ユーザー詳細</h1>
 
-<div>
-  <table>
-    <tr>
-      <td></td>
-      <td><%= attachment_image_tag current_user, :image, size: '70x70' %></td>
-    </tr>
-    <tr>
-      <td>ユーザー名</td>
-      <td><%= current_user.name %></td>
-    </tr>
-    <tr>
-      <td>ひとこと</td>
-      <td><%= current_user.introduction %></td>
-    </tr>
-  </table>
-</div>
-<div>
-  <%= link_to "会員情報編集", edit_public_user_path(current_user.id) %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6">
+      <table class="table table-dark">
+        <tr>
+          <td></td>
+          <td><%= attachment_image_tag current_user, :image, size: '150x150' %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= current_user.name %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= current_user.introduction %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= link_to "編集する", edit_public_user_path(current_user.id),class:"fas fa-edit nav-link text-light" %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-6">
+      <h3 class="text-center">Level</h3>
+      <div>
+        <h3 class="text-center">ここにバー表示</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+　</div>
+　<div class="row">
+　</div>
+　<div class="row">
+　</div>
+  <div class="row">
+    <div class="col-6">
+      <%= link_to "質問する", new_public_question_path,class:"btn btn-info btn-lg btn-block" %>
+    </div>
+　</div>
 </div>
 
-<div>
-  <%= link_to "質問する", new_public_question_path %>
-</div>

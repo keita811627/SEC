@@ -9,6 +9,12 @@ class Public::QuestionsController < ApplicationController
 
   end
 
+  def search
+  @questions = Question.search(params[:keyword])
+  @keyword = params[:keyword]
+  render "index"
+  end
+
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new

@@ -1,9 +1,8 @@
-<h5>ユーザー　質問詳細画面</h5>
-<div class="container">
+
+<div class="container mt-5">
   <div class="row">
-     <div class="col">
-       <h3>質問</h3>
-       <table>
+    <div class="col-6">
+       <table class="table">
          <tr>
            <td>タイトル</td>
            <td><%= @question.title %></td>
@@ -21,14 +20,19 @@
           <td><%= @question.question_status.status %></td>
          </tr>
        </table>
-       <%= link_to "編集", edit_public_question_path(@question.id) %>
-     </div>
+       <%= link_to "編集", edit_public_question_path(@question.id),class:"btn btn-success btn-sm btn-block" %>
+    </div>
+    <div class="col-6">
+   　　　 <%= form_with(model:[@question, @answer], url: public_question_answers_path(@question.id), local: true) do |f| %>
+    　　　<%= f.text_area :answer, :size=>"70x13", :placeholder => "マークダウン記法を使い回答を入力してください" %>
+   　　　　 <%= f.submit "送信する", class:"btn btn-info btn-lg btn-block" %>
+   　　　 <% end %>
+    </div>
 
-     <div class="col">
-      <h3>回答</h3>
-      <p>回答数：<%= @question.answers.count %></p>
+    <div class="row">
+      <h3>回答数：<%= @question.answers.count %></h3>
       <% @question.answers.each do |answer| %>
-      <table>
+      <table class="table">
         <tr>
           <td>ユーザー名</td>
           <td><%= answer.user.name %></td>
@@ -57,13 +61,7 @@
             <% end %>
          </table>
          <% end %>
-         </div>
+    </div>
 
- 　　　 <div class="col">
-   　　　 <%= form_with(model:[@question, @answer], url: public_question_answers_path(@question.id), local: true) do |f| %>
-    　　　<%= f.text_area :answer, :placeholder => "回答を入力してください" %>
-   　　　　 <%= f.submit "送信する" %>
-   　　　 <% end %>
-  　　 </div>
 　 </div>
 </div>
