@@ -4,8 +4,11 @@ class Public::AnswersController < ApplicationController
      @question = Question.find(params[:question_id])
      @answer = current_user.answers.new(answer_params)
      @answer.question_id = @question.id
-     @answer.save
-     redirect_to public_question_path(params[:question_id])
+     if @answer.save
+         redirect_to public_question_path(params[:question_id])
+     else
+         redirect_to public_question_path(params[:question_id])
+     end
   end
 
   def destroy

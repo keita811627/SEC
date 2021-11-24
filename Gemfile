@@ -72,3 +72,5 @@ gem 'font-awesome-sass', '~> 5.13'
 
 gem 'redcarpet', '~> 2.3.0'
 gem 'coderay'
+
+gem 'pry-byebug'

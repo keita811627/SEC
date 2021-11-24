@@ -1,14 +1,69 @@
-<div>
-  <h2>質問編集</h2>
- <%= form_with model: @question, url: public_question_path(@question.id), local:true do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title, :placeholder => "タイトル" %>
-  <h4>質問内容</h4>
-  <%= f.text_area :body, :placeholder => "詳細を記入してください" %>
-  <h4>技術項目</h4>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
-  <h4>質問ステータス</h4>
-  <%= f.collection_select :question_status_id, QuestionStatus.all, :id, :status %>
-  <%= f.submit "登録" %>
- <% end %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6">
+      <h2>質問投稿</h2>
+      <%= form_with model: @question, url: public_question_path(@question.id), local:true do |f| %>
+        <h4>タイトル</h4>
+        <%= f.text_field :title, :size=>"55", :placeholder => "タイトル" %>
+        <h4>質問内容</h4>
+        <%= f.text_area :body, :size=>"60x17", :placeholder => "詳細を記入してください" %>
+        <h4>技術項目</h4>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+        <h4>質問ステータス</h4>
+        <%= f.collection_select :question_status_id, QuestionStatus.all, :id, :status %>
+        <%= f.submit "編集",class:"btn btn-sm btn-primary"%>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <h3>マークダウン記法　一覧表</h3>
+      <table class="table table-dark table-bordered">
+        <thead>
+          <tr>
+            <th>やりたいこと</th>
+            <th>書き方</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>コードの挿入</td>
+            <td> ```言語,タイトル (バッククォート3つ)で囲む</td>
+          </tr>
+          <tr>
+            <td>見出し</td>
+            <td>#を頭につける　(例)  # 見出し ## 見出し</td>
+          </tr>
+          <tr>
+            <td>番号付きリスト</td>
+            <td>1.テキスト</td>
+          </tr>
+          <tr>
+            <td>リスト</td>
+            <td>- 箇条書き - インデントはタブ</td>
+          </tr>
+          <tr>
+            <td>インライン表示</td>
+            <td>` テキスト `</td>
+          </tr>
+          <tr>
+            <td>リンクの挿入</td>
+            <td>[タイトル](URL)</td>
+          </tr>
+          <tr>
+            <td>引用</td>
+            <td>> テキスト,  >> テキスト</td>
+          </tr>
+          <tr>
+            <td>太字</td>
+            <td>*テキスト*</td>
+          </tr>
+          <tr>
+            <td>テーブルの挿入</td>
+            <td>列数×行数、|th左|</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

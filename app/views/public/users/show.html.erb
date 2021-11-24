@@ -1,43 +1,73 @@
 
 <div class="container mt-5">
-  <div class="row">
+  <div class="row dark">
     <div class="col-6">
       <table class="table table-dark">
         <tr>
           <td></td>
-          <td><%= attachment_image_tag current_user, :image, size: '150x150' %></td>
+          <td class="image"><%= attachment_image_tag @user, :image, size: '150x150'%></td>
         </tr>
         <tr>
           <td></td>
-          <td><%= current_user.name %></td>
+          <td>
+            <%= @user.name %></td>
         </tr>
         <tr>
           <td></td>
-          <td><%= current_user.introduction %></td>
+          <td><%= @user.introduction %></td>
         </tr>
         <tr>
           <td></td>
-          <td><%= link_to "編集する", edit_public_user_path(current_user.id),class:"fas fa-edit nav-link text-light" %></td>
+          <td><%= link_to "プロフィールを設定", edit_public_user_path(@user.id),class:"fas fa-edit nav-link text-light" %></td>
         </tr>
       </table>
     </div>
-    <div class="col-6">
-      <h3 class="text-center">Level</h3>
+    <div class="col-6 text-light">
+      <h3 class="text-center">Level＝<%= @level %></h3>
       <div>
-        <h3 class="text-center">ここにバー表示</h3>
+        <h3 class="text-center">いいねを5個集めると</br>レベルが1上がっていきます。</h3>
       </div>
     </div>
   </div>
-  <div class="row">
-　</div>
-　<div class="row">
-　</div>
-　<div class="row">
-　</div>
+
   <div class="row">
     <div class="col-6">
-      <%= link_to "質問する", new_public_question_path,class:"btn btn-info btn-lg btn-block" %>
+      <h3>質問履歴</h3>
+         <%= form_with url: public_search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :keyword, :size=>"50", value: @keyword %>
+            <%= f.submit "検索" %>
+            <% end %>
+    </div>
+    <div class="col-6">
+        <%= link_to "質問する", new_public_question_path,class:"btn btn-primary btn-lg btn-block" %>
     </div>
 　</div>
 </div>
 
+<table class="table table-info table-bordered">
+  <thead>
+    <tr>
+        <th>ユーザ名</th>
+        <th>ジャンル</th>
+        <th>タイトル</th>
+        <th>質問内容</th>
+        <th>質問ステータス</th>
+        <th>日付</th>
+    </tr>
+  </thead>
+     <% @user_questions.each do |user_question| %>
+  <tbody>
+    <tr>
+        <td><%= @user.name %></td>
+        <td><%= user_question.genre.name %></td>
+        <td><%= user_question.title %></td>
+        <td>
+          <%= markdown(user_question.body).html_safe %>
+          <p class="text-right"><%= link_to "詳細", public_question_path(user_question.id),class:"fas fa-eye nav-link text-danger" %></p>
+        </td>
+        <td><%= user_question.question_status.status %></td>
+        <td><%= user_question.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+      <% end %>
+  </tbody>
+</table>

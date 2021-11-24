@@ -1,6 +1,12 @@
 
 
 <div class="container mt-5">
+  <% if @question.errors.any? %>
+  <%= @question.errors.count %>件のエラーが発生しました
+  <% @question.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+  <% end %>
   <div class="row">
     <div class="col-6">
       <h2>質問投稿</h2>
@@ -13,7 +19,7 @@
         <%= f.collection_select :genre_id, Genre.all, :id, :name %>
         <h4>質問ステータス</h4>
         <%= f.collection_select :question_status_id, QuestionStatus.all, :id, :status %>
-        <%= f.submit "登録" %>
+        <%= f.submit "登録",class:"btn btn-sm btn-primary" %>
       <% end %>
     </div>
     <div class="col-6">

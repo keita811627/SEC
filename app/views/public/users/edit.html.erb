@@ -1,11 +1,28 @@
-<h1>ユーザー側　ユーザー情報編集画面</h1>
 
-<div>
-  <h3>ユーザー情報登録</h3>
-  <%= form_with model: @user, url: public_user_path(current_user.id), local:true do |f| %>
-  <%= f.attachment_field :image %>
-  <%= f.text_field :name, :placeholder => "ユーザー名" %>
-  <%= f.text_area :introduction, :placeholder => "ひとこと" %>
-  <%= f.submit "登録" %>
+<div class="container mt-5">
+  <% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %>
   <% end %>
+  <% end %>
+  <div class="row">
+    <div class="col-12">
+       <h3>ユーザー情報登録</h3>
+        <%= form_with model: @user, url: public_user_path(@user.id), local:true do |f| %>
+        <h4 class="text-danger">プロフィール画像を登録</h4>
+        <%= f.attachment_field :image %>
+        <h4 class="text-danger">ユーザー名を登録</h4>
+        <%= f.text_field :name, :size=>"60", :placeholder => "ユーザー名" %>
+        <h4 class="text-danger">ひとこと</h4>
+        <%= f.text_area :introduction, :size=>"60x10", :placeholder => "ひとこと" %>
+        <div>
+        <%= f.submit "登録",class:"btn btn-sm btn-primary" %>
+        </div>
+        <% end %>
+        <div>
+          <%= link_to "退会する", public_unsubscribe_path,class:"btn btn-denger btn-sm btn-block" %>
+        </div>
+    </div>
+  </div>
 </div>

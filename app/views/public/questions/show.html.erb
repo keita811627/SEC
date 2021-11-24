@@ -1,5 +1,11 @@
 
 <div class="container mt-5">
+    <% if @answer.errors.any? %>
+    <%= @answer.errors.count %>件のエラーが発生しました
+    <% @answer.errors.full_messages.each do |message| %>
+    <%= message %>
+     <% end %>
+    <% end %>
   <div class="row">
     <div class="col-6">
        <table class="table">

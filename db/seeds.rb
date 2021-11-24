@@ -10,3 +10,5 @@ Admin.create!(
     email: 'pan.811627@gmail.com',
     password: '21520049'
     )
+
+

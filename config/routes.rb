@@ -27,6 +27,7 @@ Rails.application.routes.draw do
  namespace :public do
 
    resources :users
+   get 'search' => 'users#search'
    get 'unsubscribe' => 'users#unsubscribe'
    patch 'users/withdraw'
 

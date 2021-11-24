@@ -1,6 +1,6 @@
-<h1>管理者側　ユーザー一覧画面</h1>
 
 <div class="container mt-5">
+  <h1>管理者側　ユーザー一覧画面</h1>
   <table class="table">
     <thead>
       <tr>
@@ -15,12 +15,16 @@
     <% @users.each do |user| %>
     <tbody>
       <tr>
-        <td><%= attachment_image_tag user, :image, size: '50x50' %></td>
+        <td>
+          <%= link_to admin_user_path(user.id) do %>
+          <%= attachment_image_tag user, :image, size: '50x50', fallback: "no_image.jpg", size: '70x70' %>
+          <% end %>
+        </td>
         <td><%= user.name %></td>
         <td><%= user.introduction %></td>
         <td><%= user.email %></td>
         <td></td>
-        <td></td>
+        <td><%= user.is_active ? '会員' : '退会' %></td>
       </tr>
     </tbody>
     <% end %>

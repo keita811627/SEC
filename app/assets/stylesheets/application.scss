@@ -19,16 +19,25 @@
 
 main {
   height: 750px;
+  overflow: scroll;
 }
 
 footer {
   background-color: #c0c0c0;
-  height: 115px;
+  height: 100px;
 }
 
 .actions {
   margin: 10px 0 10px 0;
 }
-main {
-  overflow: scroll;
+
+
+.image {
+  border-radius: 100px;
 }
+
+.dark {
+  background-color: #696969;
+}
+
+

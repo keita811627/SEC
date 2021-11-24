@@ -23,8 +23,11 @@ class Public::QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user_id = current_user.id
-    @question.save
+    if @question.save
     redirect_to public_question_path(@question.id)
+    else
+      render :new
+    end
   end
 
   def edit
