@@ -12,33 +12,31 @@
         </div>
       </div>
   </div>
-</div>
-<div>
-    <table class="table table-info table-bordered">
-        <thead>
-            <tr>
-                <th>ユーザ名</th>
-                <th>ジャンル</th>
-                <th>タイトル</th>
-                <th>質問内容</th>
-                <th>質問ステータス</th>
-                <th>日付</th>
-            </tr>
-        </thead>
-        <% @questions.each do |question| %>
-        <tbody>
-            <tr>
-                <td><%= question.user.name %></td>
-                <td><%= question.genre.name %></td>
-                <td><%= question.title %></td>
-                <td>
-                  <%= markdown(question.body).html_safe %>
-                  <p class="text-right"><%= link_to "詳細", public_question_path(question.id),class:"fas fa-eye nav-link text-danger" %></p>
-                </td>
-                <td><%= question.question_status.status %></td>
-                <td><%= question.created_at.strftime('%Y/%m/%d') %></td>
-            </tr>
-        </tbody>
-        <% end %>
-    </table>
+    <div>
+        <table class="table table-info table-bordered">
+            <thead>
+                <tr>
+                    <th>ユーザ名</th>
+                    <th>ジャンル</th>
+                    <th>タイトル</th>
+                    <th>質問ステータス</th>
+                    <th>日付</th>
+                </tr>
+            </thead>
+            <% @questions.each do |question| %>
+            <tbody>
+                <tr>
+                    <td><%= question.user.name %></td>
+                    <td><%= question.genre.name %></td>
+                    <td>
+                        <%= question.title %>
+                        <p class="text-right"><%= link_to "詳細", public_question_path(question.id),class:"fas fa-eye nav-link text-danger" %></p>
+                    </td>
+                    <td><%= question.question_status.status %></td>
+                    <td><%= question.created_at.strftime('%Y/%m/%d') %></td>
+                </tr>
+            </tbody>
+            <% end %>
+        </table>
+    </div>
 </div>

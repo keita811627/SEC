@@ -1,5 +1,7 @@
 class Public::QuestionsController < ApplicationController
 
+  before_action :check_user, only: [:edit, :update]
+
   def new
     @question = Question.new
   end
@@ -49,6 +51,12 @@ class Public::QuestionsController < ApplicationController
 
   def question_params
    params.require(:question).permit(:user_id, :genre_id, :question_status_id, :title, :body)
+  end
+
+  def check_user
+    @question = Question.find(params[:id])
+    @user = @question.user
+    redirect_to public_questions_path unless @user == current_user
   end
 
 end

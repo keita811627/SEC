@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
 
+  before_action :check_user, only: [:edit, :update]
+
   def index
     @users = User.all.order(experience_point: "DESC")
   end
@@ -20,7 +22,8 @@ class Public::UsersController < ApplicationController
   end
 
   def search
-     @user_questions = current_user.questions.search(params[:keyword])
+    @user = current_user
+    @user_questions = current_user.questions.search(params[:keyword])
     @keyword = params[:keyword]
     render "show"
   end
@@ -53,6 +56,11 @@ class Public::UsersController < ApplicationController
 
   def user_params
    params.require(:user).permit(:name, :introduction, :image, :experience_point, :is_active, :email)
+  end
+
+  def check_user
+    @user = User.find(params[:id])
+    redirect_to public_user_path(current_user.id) unless @user == current_user
   end
 
 end

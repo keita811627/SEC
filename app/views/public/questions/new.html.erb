@@ -19,7 +19,7 @@
         <%= f.collection_select :genre_id, Genre.all, :id, :name %>
         <h4>質問ステータス</h4>
         <%= f.collection_select :question_status_id, QuestionStatus.all, :id, :status %>
-        <%= f.submit "登録",class:"btn btn-sm btn-primary" %>
+        <%= f.submit "投稿",class:"btn btn-sm btn-primary" %>
       <% end %>
     </div>
     <div class="col-6">
@@ -68,6 +68,26 @@
           <tr>
             <td>テーブルの挿入</td>
             <td>列数×行数、|th左|</td>
+          </tr>
+          <tr>
+            <td>文字色</td>
+            <td>font color="Red" テキストfont </td>
+          </tr>
+          <tr>
+            <td>斜体</td>
+            <td>*テキスト*</td>
+          </tr>
+          <tr>
+            <td>打ち消し線</td>
+            <td>~~テキスト~~</td>
+          </tr>
+          <tr>
+            <td>水平線</td>
+            <td>***</td>
+          </tr>
+          <tr>
+            <td>マークダウンのエスケープ</td>
+            <td>\</td>
           </tr>
         </tbody>
       </table>

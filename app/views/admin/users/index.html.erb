@@ -23,7 +23,13 @@
         <td><%= user.name %></td>
         <td><%= user.introduction %></td>
         <td><%= user.email %></td>
-        <td></td>
+        <td>
+          <% if user.experience_point.to_i <= 5 %>
+           1
+          <% elsif user.experience_point.to_i >= 5 %>
+          <%= user.experience_point.to_i / 5 %>
+          <% end %>
+        </td>
         <td><%= user.is_active ? '会員' : '退会' %></td>
       </tr>
     </tbody>

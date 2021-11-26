@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'requests/index'
+  end
+  namespace :public do
+    get 'requests/new'
+    get 'requests/index'
+  end
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
@@ -21,22 +28,29 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :requests
+
  end
 
 
  namespace :public do
 
-   resources :users
-   get 'search' => 'users#search'
    get 'unsubscribe' => 'users#unsubscribe'
    patch 'users/withdraw'
-
+   resources :users do
+       collection do
+           get 'search'
+       end
+   end
    resources :questions do
        resources :answers do
            resource :favorites, only: [:create, :destroy]
       end
    end
    get 'search' => 'questions#search'
+
+   resources :requests
+
  end
 
 end

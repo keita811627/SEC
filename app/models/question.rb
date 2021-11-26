@@ -7,8 +7,9 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   def self.search(keyword)
-  where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
+  where(["title like?", "%#{keyword}%"])
   end
+
 
   validates :title, presence: true
   validates :body, presence: true

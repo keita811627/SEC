@@ -1,0 +1,15 @@
+
+<div class="container mt-5">
+  <table class="table">
+    <% @requests.each do |request| %>
+    <tr>
+      <td>内容</td>
+      <td><%= request.request %></td>
+      
+    </tr>
+    <% end %>
+  </table>
+  <div>
+    <%= link_to "戻る", new_public_request_path %>
+  </div>
+</div>
