@@ -74,3 +74,8 @@ gem 'redcarpet', '~> 2.3.0'
 gem 'coderay'
 
 gem 'pry-byebug'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
