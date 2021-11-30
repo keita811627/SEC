@@ -1,5 +1,5 @@
 class Public::QuestionsController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :check_user, only: [:edit, :update]
 
   def new

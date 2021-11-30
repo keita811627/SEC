@@ -1,4 +1,5 @@
 class Admin::QuestionStatusesController < ApplicationController
+  before_action :authenticate_admin!
 
   def new
     @question_status = QuestionStatus.new

@@ -1,4 +1,5 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @favorite = current_user.favorites.new(answer_id: params[:answer_id])
